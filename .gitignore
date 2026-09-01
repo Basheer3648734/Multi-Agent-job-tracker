@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+## gmail secrets
+client_secret_gmail.json
+gmail_token.json

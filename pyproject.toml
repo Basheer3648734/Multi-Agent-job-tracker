@@ -1,0 +1,24 @@
+[project]
+name = "multi-agent-job-tracker"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Basheer", email = "bk3648734@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "google-api-python-client>=2.200.0",
+    "google-auth-httplib2>=0.4.2",
+    "google-auth-oauthlib>=1.4.1",
+    "langchain>=1.3.18",
+    "langchain-openai>=1.6.0",
+    "python-dotenv>=1.2.3",
+]
+
+[project.scripts]
+multi-agent-job-tracker = "multi_agent_job_tracker:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
