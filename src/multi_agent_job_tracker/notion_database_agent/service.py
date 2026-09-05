@@ -83,6 +83,13 @@ class Notion_database_service:
         return {
             "email": value
         }
+    @staticmethod
+    def _date(value):
+        return {
+            "date": {
+                "start": value.isoformat()
+            } if value else None
+        }
 
     @staticmethod
     def _phone(value):
@@ -329,11 +336,10 @@ class Notion_database_service:
         position = job.position
 
         if not company_name:
-            raise ValueError("Company is required")
+            return "Company name is required"
 
         if not position:
-            raise ValueError("Position is required")
-
+            return "Position is required"
         # -----------------------------------------------------
         # Search for existing row
         # -----------------------------------------------------

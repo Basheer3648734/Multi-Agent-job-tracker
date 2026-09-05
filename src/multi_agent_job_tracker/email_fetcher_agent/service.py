@@ -3,7 +3,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 import base64
 
-from GmailAuthenticator import GmailAuthenticator
+from multi_agent_job_tracker.email_fetcher_agent.GmailAuthenticator import GmailAuthenticator
 
 
 class EmailFetcherService:
@@ -18,7 +18,7 @@ class EmailFetcherService:
     def fetch_emails(self, service, user_id="me", label_ids=["INBOX"], q=""):
         try:
             response=[]
-            results = service.users().messages().list(userId=user_id, labelIds=label_ids, q=q, maxResults=2).execute()
+            results = service.users().messages().list(userId=user_id, labelIds=label_ids, q=q).execute()
             messages = results.get("messages", [])
             if not messages:
                 print("No messages found.")
