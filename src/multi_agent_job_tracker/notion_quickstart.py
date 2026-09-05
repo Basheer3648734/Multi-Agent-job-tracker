@@ -1,20 +1,16 @@
-import requests
+
 import os
 from dotenv import load_dotenv
-
+from notion_database_agent.service import Notion_database_service
+from multi_agent_job_tracker.models.Email_extractor_model import Email_extractor_model
 load_dotenv()
 
-notion_base_url = os.getenv("NOTION_BASE_URL")
-datasource_id = os.getenv("NOTION_DATASOURCE_ID")
-url = f"{notion_base_url}v1/databases/{datasource_id}"
 
-headers = {
-    "Notion-Version": os.getenv("NOTION_VERSION"),
-    "Authorization": f"Bearer {os.getenv('NOTION_API_KEY')}",
-    "Content-Type": "application/json"
-}
+notion_service:Notion_database_service = Notion_database_service(os.getenv("NOTION_API_KEY"))
+row = Email_extractor_model( Company="Meta", position="AI Enginee", pay_rate="72", job_portal="linkedin", location="us", applied_date="2026-09-03", link="https://developers.notion.com/reference/query-a-data-source?playground=open", status="Applied", poc_name="adf", poc_email="afdfd@fddd.com", poc_phone="8555", summary="" )
 
-response = requests.get(url, headers=headers)
+result = notion_service.upsert_notion_row(
+    data_source_id=f"{os.getenv('NOTION_DATASOURCE_ID')}",
+    job=row)
 
-print(response)
-print("Response: ", response.text)
+print(result)

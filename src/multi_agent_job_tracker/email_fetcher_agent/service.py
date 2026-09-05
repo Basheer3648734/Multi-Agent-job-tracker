@@ -8,7 +8,7 @@ from GmailAuthenticator import GmailAuthenticator
 
 class EmailFetcherService:
     def __init__(self):
-        self.gmail_authenticator = GmailAuthenticator("token.json")
+        self.gmail_authenticator = GmailAuthenticator("gmail_token.json")
 
     def get_gmail_service(self):
         creds = self.gmail_authenticator.authenticate()
